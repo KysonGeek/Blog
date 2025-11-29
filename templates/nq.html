@@ -2,5 +2,5 @@
 
 {% block main_content %}
     {% set section = get_section(path="nq/_index.md") %}
-    {{ post_macros::list_title(pages=section.pages) }}
+    {{ post_macros::list_title(pages=section.pages, title=section.title | default(value="NQ")) }}
 {% endblock main_content %}

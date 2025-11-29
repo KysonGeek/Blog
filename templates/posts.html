@@ -1,0 +1,24 @@
+{% extends "index.html" %}
+
+{% block main_content %}
+    {%- if paginator %}
+        {% set section = get_section(path="posts/_index.md") %}
+        {{ post_macros::list_title(pages=paginator.pages, title=section.title | default(value="文章")) }}
+        <ul class="pagination">
+            {% if paginator.previous %}
+                <span class="page-item page-prev">
+                    <a href={{ paginator.previous }} class="page-link" aria-label="Previous"><span aria-hidden="true">{{ config.extra.translations[lang][0].previous_page }}</span></a>
+                </span>
+            {% endif %}
+
+            {% if paginator.next %}
+                <span class="page-item page-next">
+                    <a href={{ paginator.next }} class="page-link" aria-label="Next"><span aria-hidden="true">{{ config.extra.translations[lang][0].next_page }}</span></a>
+                </span>
+            {% endif %}
+        </ul>
+    {% else %}
+        {% set section = get_section(path="posts/_index.md") %}
+        {{ post_macros::list_title(pages=section.pages, title=section.title | default(value="文章")) }}
+    {% endif -%}
+{% endblock main_content %}

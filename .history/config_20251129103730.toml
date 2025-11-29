@@ -1,0 +1,61 @@
+# Be sure to change these!
+base_url = "//zola.qixin.ch/"
+title = "Kyson's blog"
+
+# Sass compilation is required
+compile_sass = true
+
+default_language = "zh-CN"
+
+# Optional: enable tags
+taxonomies = [{ name = "tags" }]
+
+# theme = "archie-zola"
+
+[markdown]
+# Code highlighting
+highlight_code = true
+highlight_theme = "OneHalfLight"
+
+
+[extra]
+# Put all your custom variables here
+
+subtitle = "The future is here - it's just not evenly distributed"
+
+# control dark mode: auto | dark | toggle
+mode = "toggle"
+
+# interal CDN resource
+useCDN = false
+
+ga = "G-76978YD176"
+
+favicon = "/icon/favicon.png"
+
+copyright = "Kyson"
+
+katex_enable = true
+
+
+[[extra.translations.zh-CN]]
+show_more = "Read more ⟶"
+previous_page = "← Previous"
+next_page = "Next →"
+posted_on = "on "
+posted_by = "Published by"
+read_time = "minute read"
+all_tags = "All tags"
+menus = [
+    { name = "主页", url = "/", weight = 2 },
+    { name = "文章", url = "/posts", weight = 2 },
+    { name = "NQ", url = "/nq", weight = 2 },
+    { name = "自我介绍", url = "/about", weight = 4 },
+    { name = "标签", url = "/tags", weight = 4 },
+]
+
+# config social icon info in the footer
+[[extra.social]]
+icon = "github"
+name = "GitHub"
+url = "https://github.com/KysonGeek"
