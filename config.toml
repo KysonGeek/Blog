@@ -1,5 +1,5 @@
 # Be sure to change these!
-base_url = "//zola.qixin.ch/"
+base_url = "//blog.qixin.ch/"
 title = "Kyson's blog"
 
 # Sass compilation is required
