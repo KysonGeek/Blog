@@ -1,5 +1,5 @@
 +++
-title = "将夸克网盘挂载到vps"
+title = "将夸克网盘挂载到vps搭建图片墙"
 date = 2025-12-02
 weight = 20251202
 description = "使用夸克网盘的webdav服务可以将百度夸克网盘挂载到本地电脑上，就像操作本地电脑硬盘一样操作网盘，非常方便。"
@@ -140,7 +140,7 @@ sudo dnf install rclone
 2. 使用 rclone sync 进行定时同步
 2.1 基本的同步命令
 ```bash
-rclone sync /var/www/quark/pictures /var/www/photos --ignore-times --delete-during
+rclone sync /var/www/quark/pictures /var/www/pictures --ignore-times --delete-during
 ```
 2.2 设置定时任务
 打开 crontab 配置
@@ -149,8 +149,75 @@ crontab -e
 ```
 在文件末尾添加一行，例如设置为每 5 分钟 同步一次（将 /path/to/rclone 替换为实际的 rclone 路径，通常是 /usr/bin/rclone）：
 ```bash
-*/5 * * * * /usr/bin/rclone sync /var/www/quark/pictures /var/www/photos --ignore-times --delete-during --log-file=/var/log/rclone_sync.log
+*/5 * * * * /usr/bin/rclone sync /var/www/quark/pictures /var/www/pictures --ignore-times --delete-during --log-file=/var/log/rclone_sync.log
 ```
+## 使用[files.gallery](https://files.gallery/)搭建图片墙
+可以使用破解版本[Smooth-Files-Gallery](https://github.com/yanranxiaoxi/Smooth-Files-Gallery)
+1. 将下载的index.php文件上传到vps的/var/www/Photos目录下
+2. 配置caddy（也可以使用nginx）
+```bash
+cat <<EOF > /etc/caddy/photo.xx.xx.service #自行修改
+photo.xx.xx { ##自行修改
+    # 设置网站根目录
+    root * /var/www/Photos
+
+    # 开启 gzip 压缩，加快图片加载
+    encode gzip
+
+    # 处理 PHP 文件 (关键步骤)
+    # 注意：unix 路径可能因系统不同而不同，下面是常见的 Ubuntu/Debian 路径
+    # 如果找不到该文件，请查看下文的“检查 PHP”部分
+    php_fastcgi unix//run/php/php8.2-fpm.sock
+
+    # 静态文件服务（用于直接展示图片）
+    file_server
+    request_body {
+        max_size 200MB
+    }
+}
+EOF
+重启caddy
+```
+systemctl restart caddy
+```
+3. 配置文件权限
+```bash
+chmod -R 777 /var/www/Photos
+```
+4. 配置Files.Gallery
+4.1 先放问一下`http://photo.xx.xx`，在index.php所在的文件夹下会生成_files，里面有个config.php, 将里面的root目录改为`/var/www/pictures`
+
+5. 设置上传文件的大小
+5.1 caddy上面已经配置了200M
+5.2 PHP 上传大小限制（必须设置，否则 Caddy 放开也没用）
+- /etc/php/8.2/fpm/php.ini
+- /etc/php/8.2/cli/php.ini
+修改：
+```
+upload_max_filesize = 200M
+post_max_size = 200M
+max_file_uploads = 100
+```
+重启PHP-FPM：
+```
+systemctl restart php8.2-fpm
+```
+验证生效
+```bash
+php -i | grep upload_max_filesize
+php -i | grep post_max_size
+```
+
+## 备注
+解释一下上面各个文件的作用
+- /var/www/Photos/index.php：Files.Gallery的入口文件，用于展示图片墙，因为files.gallery会从_files会在此目录下创建文件，所以要给写权限
+- /var/www/Photos/_files/config.php：Files.Gallery的配置文件，用于设置图片墙的参数，如根目录、缓存时间等。
+- /var/www/quark/pictures：这是我们挂载的webdav目录，用于存储图片。
+- /var/www/pictures：这是我们从挂载点拉到本地的目录，Files.Gallery会从这里读取图片。因为文件会被覆盖，所以index.php要放到其他文件夹。
+- /var/log/rclone_sync.log：这是rclone同步日志文件，用于记录同步过程中的信息。
+- /etc/caddy/photo.xx.xx.service：这是caddy的配置文件，用于配置图片墙的域名、根目录、上传文件大小等。
+
+
 
 ## 引用
 - [Linux使用davfs2挂载webdav作为本地磁盘并实现自动挂载](https://www.yunieebk.com/davfs2/)
