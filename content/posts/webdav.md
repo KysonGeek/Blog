@@ -126,6 +126,32 @@ systemctl enable path-webdav.mount
 
 最后可以使用`df -h`查看一下是否生效
 
+## 将挂载数据同步到本地
+由于webdav速度太慢，严重影响网页加载速度，因此可以将挂载数据同步到本地。
+1. 安装rclone
+```bash
+# 示例：Debian/Ubuntu
+sudo apt update
+sudo apt install rclone
+
+# 示例：CentOS/RHEL
+sudo dnf install rclone
+```
+2. 使用 rclone sync 进行定时同步
+2.1 基本的同步命令
+```bash
+rclone sync /var/www/quark/pictures /var/www/photos --ignore-times --delete-during
+```
+2.2 设置定时任务
+打开 crontab 配置
+```bash
+crontab -e
+```
+在文件末尾添加一行，例如设置为每 5 分钟 同步一次（将 /path/to/rclone 替换为实际的 rclone 路径，通常是 /usr/bin/rclone）：
+```bash
+*/5 * * * * /usr/bin/rclone sync /var/www/quark/pictures /var/www/photos --ignore-times --delete-during --log-file=/var/log/rclone_sync.log
+```
+
 ## 引用
 - [Linux使用davfs2挂载webdav作为本地磁盘并实现自动挂载](https://www.yunieebk.com/davfs2/)
 
