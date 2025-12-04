@@ -210,14 +210,15 @@ php -i | grep post_max_size
 
 ## 备注
 解释一下上面各个文件的作用
-- /var/www/Photos/index.php：Files.Gallery的入口文件，用于展示图片墙，因为files.gallery会从_files会在此目录下创建文件，所以要给写权限
-- /var/www/Photos/_files/config.php：Files.Gallery的配置文件，用于设置图片墙的参数，如根目录、缓存时间等。
-- /var/www/quark/pictures：这是我们挂载的webdav目录，用于存储图片。
-- /var/www/pictures：这是我们从挂载点拉到本地的目录，Files.Gallery会从这里读取图片。因为文件会被覆盖，所以index.php要放到其他文件夹。
-- /var/log/rclone_sync.log：这是rclone同步日志文件，用于记录同步过程中的信息。
-- /etc/caddy/photo.xx.xx.service：这是caddy的配置文件，用于配置图片墙的域名、根目录、上传文件大小等。
 
-
+| 路径 | 作用 |
+|------|------|
+| /var/www/Photos/index.php | Files.Gallery 的入口文件，用于展示图片墙。因 files.gallery 会在该目录下创建 `_files` 等文件，需赋予写权限。 |
+| /var/www/Photos/_files/config.php | Files.Gallery 的配置文件，用于设置图片墙参数，如根目录、缓存时间等。 |
+| /var/www/quark/pictures | 挂载的 WebDAV 目录，用于存储图片。 |
+| /var/www/pictures | 从挂载点同步到本地的目录，Files.Gallery 从此处读取图片。因文件会被覆盖，index.php 需放在其他文件夹。 |
+| /var/log/rclone_sync.log | rclone 同步日志文件，记录同步过程中的信息。 |
+| /etc/caddy/photo.xx.xx.service | Caddy 配置文件，用于配置图片墙域名、根目录、上传文件大小等。 |
 
 ## 引用
 - [Linux使用davfs2挂载webdav作为本地磁盘并实现自动挂载](https://www.yunieebk.com/davfs2/)
