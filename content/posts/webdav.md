@@ -36,7 +36,7 @@ tags = ["vps", "工具"]
    
    [Service]
    Type=simple
-   ExecStart=/bin/bash -c "/root/quark/quarkdrive-webdav --quark-cookie \"$(cat /root/quark/cookie.txt)\" -U kyson -W liugeliu -p 8082"
+   ExecStart=/root/quark/start-quark.sh
    Restart=always
    User=root
    
@@ -47,7 +47,10 @@ tags = ["vps", "工具"]
    systemctl enable quark
    
    ```
-
+   ```
+   #!/bin/bash
+   /root/quark/quarkdrive-webdav --quark-cookie "$(cat /root/quark/cookie.txt)" -U kyson -W liugeliu -p 8082
+   ```
    cookie比较长，可以放在`/root/quark/cookie.txt`中
 
 ## 将WebDAV挂载到vps
