@@ -4,7 +4,7 @@
 
 ## 在线地址
 
-- 站点：`//blog.qixin.ch/`
+- 站点：`https://blog.qixin.ch/`
 - 标题：`Kyson's blog`
 
 ## 技术栈
