@@ -22,12 +22,12 @@ touch ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 
 //或者通过命令上传
-ssh-copy-id -p 11017 -i id_ed25519_gen2.pub maxchan@ip
+ssh-copy-id -p 11017 -i ~/.ssh/id_ed25519_gen2.pub maxchan@ip
 ```
 
 ## 3. 测试密钥登录
 ```
-ssh -i ~/.ssh/id_ed25519 root@你的VPSIP
+ssh -i ~/.ssh/id_ed25519_gen2 root@你的VPSIP
 ```
 
 ## 4. 删除密码登录
