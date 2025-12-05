@@ -11,7 +11,7 @@ tags = ["vps","工具"]
 
 ## 1. 生成密钥
 ```
-ssh-keygen -t ed25519 -C "phone" -f ~/.ssh/id_ed25519_phone
+ssh-keygen -t ed25519 -C "gen2" -f ~/.ssh/id_ed25519_gen2
 ```
 
 ## 2. 密钥上传到vps
