@@ -9,7 +9,7 @@ tags = ["vps", "工具"]
 
 [extra]
 +++
-## 使用开源工具开始夸克网盘的[WebDAV](https://zh.wikipedia.org/wiki/WebDAV)服务
+## 使用开源工具挂载夸克网盘的[WebDAV](https://zh.wikipedia.org/wiki/WebDAV)服务
 
 1. 下载工具
 
@@ -141,7 +141,7 @@ tags = ["vps", "工具"]
 
    2.1 基本的同步命令
    ```bash
-   rclone sync /var/www/quark/pictures /var/www/pictures --delete-during
+   rclone sync /var/www/quark/pictures /var/www/pictures --ignore-times --delete-during
    ```
    2.2 设置定时任务
 
@@ -151,7 +151,7 @@ tags = ["vps", "工具"]
    ```
    在文件末尾添加一行，例如设置为每 5 分钟 同步一次（将 /path/to/rclone 替换为实际的 rclone 路径，通常是 /usr/bin/rclone）：
    ```bash
-   */5 * * * * /usr/bin/rclone sync /var/www/quark/pictures /var/www/pictures --delete-during --log-file=/var/log/rclone_sync.log
+   */5 * * * * /usr/bin/rclone sync /var/www/quark/pictures /var/www/pictures --ignore-times --delete-during --log-file=/var/log/rclone_sync.log
    ```
 ## 使用[files.gallery](https://files.gallery/)搭建图片墙
 
