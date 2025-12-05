@@ -53,7 +53,7 @@ weight = 20251205
 description = "文章简介"
 
 [taxonomies]
-tags = ["示例", "标签"]
+tags = ["标签1", "标签2"]
 
 [extra]
 +++
