@@ -34,7 +34,7 @@
 
 - `content/`：
   - `posts/` 文章列表，例如 `content/posts/as.md`
-  - `about.md` 等页面
+  - `about.md` 自我介绍页面
 - `static/`：公共静态资源（如 `static/icon/favicon.png`、`static/imgs/...`）
 - `templates/`：页面模板与宏（如 `templates/index.html`、`templates/posts.html`）
 - `themes/archie-zola/`：主题源码（可直接二次定制）
