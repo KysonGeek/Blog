@@ -8,7 +8,7 @@ tags = ["vps", "工具"]
 
 [extra]
 +++
-
+![screenshot dark](/imgs/cover.webp)
 [全球延迟](https://tools.bunny.net/latency-test)
 ## realm转发
 ```
