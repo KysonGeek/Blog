@@ -1,6 +1,6 @@
 # Be sure to change these!
 base_url = "//blog.qixin.ch/"
-title = "Kyson's blog"
+title = "大模型善后工程师"
 
 # Sass compilation is required
 compile_sass = true
