@@ -1,6 +1,7 @@
 # Be sure to change these!
 base_url = "//blog.qixin.ch/"
 title = "大模型善后工程师"
+description = "写作强迫你更清晰地思考"
 
 # Sass compilation is required
 compile_sass = true
@@ -20,8 +21,6 @@ highlight_theme = "OneHalfLight"
 
 [extra]
 # Put all your custom variables here
-
-subtitle = "The future is here - it's just not evenly distributed"
 
 # control dark mode: auto | dark | toggle
 mode = "toggle"
