@@ -49,7 +49,7 @@ tags = ["vps", "工具"]
    ```
    ```
    #!/bin/bash
-   /root/quark/quarkdrive-webdav --quark-cookie "$(cat /root/quark/cookie.txt)" -U kyson -W liugeliu -p 8082
+   /root/quark/quarkdrive-webdav --quark-cookie "$(cat /root/quark/cookie.txt)" -U admin -W password -p 8082
    ```
    cookie比较长，可以放在`/root/quark/cookie.txt`中
 
