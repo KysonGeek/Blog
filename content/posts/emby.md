@@ -56,7 +56,7 @@ tags = ["技术", "emby"]
 
 ## 将WebDAV挂载到vps
 
-1. 脚本
+1. 安装工具
 
     ```bash
     cat <<EOF >> /etc/systemd/system/clouddrive.service
@@ -94,10 +94,16 @@ tags = ["技术", "emby"]
     [Install]
     WantedBy=multi-user.target
     EOF
+
+    ```
+2. 重启服务
+
+    ```bash
     systemctl daemon-reload
     systemctl enable clouddrive
     systemctl start clouddrive
     ```
+
 ## 生成strm
 
 ```yaml
@@ -145,5 +151,17 @@ tags = ["技术", "emby"]
 ## 备注
 - cd2挂载时设置允许其他用户访问权限
 - echo "user_allow_other" > /etc/fuse.conf
+- 破解emby
+
+```bash
+wget --no-check-certificate https://cangshui.net/-down/-mysh/emby/emby4.8.11.0/emby-happy.tar
+tar -zxvf emby-happy.tar
+
+docker cp ./connectionmanager.js emby:/system/dashboard-ui/modules/emby-apiclient/connectionmanager.js
+docker cp ./Emby.Web.dll emby:/system/Emby.Web.dll
+docker cp ./embypremiere.js emby:/system/dashboard-ui/embypremiere/embypremiere.js
+docker cp ./MediaBrowser.Model.dll emby:/system/MediaBrowser.Model.dll
+docker cp ./Emby.Server.Implementations.dll emby:/system/Emby.Server.Implementations.dll
+```
 
 > Linux 的 FUSE 挂载默认只允许执行挂载命令的用户（通常是 root）访问
