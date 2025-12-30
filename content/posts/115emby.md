@@ -63,7 +63,7 @@ tags = ["技术", "emby"]
         # user: "1000:1000" # 如果需要指定用户，请使用非0的ID
         restart: always
         container_name: emby
-        image: amilys/embyserver:4.9.0.46
+        image: amilys/embyserver:latest
     ```
 
 2. 配置反代
