@@ -296,6 +296,13 @@ tags = ["技术", "emby"]
 - **图像获取器：** 我优先使用Fanart保证获取的质量，如果是修改HOST方式请只选用TMDB
 - **获取器设置：** 参照电影的设置即可
 
+## 网盘资源
+
+- [Cool Online Emby](https://nullbr.eu.org/)
+- [影巢](https://hdhive.com/)
+- [盘搜](https://ps.axxc.de/)
+
+
 ## 备注
 1. 脚本中`EMBY_BASE_URL`需要替换为自己的emby地址
 2. 脚本中`EMBY_API_KEY`需要替换为自己的emby api key
