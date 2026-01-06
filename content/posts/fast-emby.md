@@ -16,9 +16,10 @@ tags = ["vps", "网络"]
 
 最近搭建了一个115+strm+302emby服务，发现起播速度较慢，经测试发现是因为302多次跳转，以及emby服务端的响应时间导致的。
 抓包效果，以及详情如下
-![](/imgs/emby/1.jpeg)
-![](/imgs/emby/3.jpeg)
-![](/imgs/emby/2.jpeg)
+
+<img src="/imgs/emby/1.jpeg" width="30%">
+<img src="/imgs/emby/3.jpeg" width="30%">
+<img src="/imgs/emby/2.jpeg" width="30%">
 由于手机屏幕比较小只筛选了115的请求记录，具体流程如下
 ![](/imgs/emby/115_puml.png)
 
@@ -115,7 +116,9 @@ if (videoKey && range && range !== "bytes=0-") {
 ![](/imgs/emby/4.png)
 
 实际情况：
-![](/imgs/emby/5.jpeg)
+
+<img src="/imgs/emby/5.jpeg" width="40%">
+
 起播速度约3秒
 
 ## 备注：
