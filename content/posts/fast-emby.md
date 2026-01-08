@@ -22,7 +22,7 @@ tags = ["vps", "网络"]
 <img src="/imgs/emby/2.jpeg" width="30%">
 由于手机屏幕比较小只筛选了115的请求记录，具体流程如下
 
-![](/imgs/emby/emby_puml.png)
+![](/imgs/emby/emby_puml.jpg)
 
 加上其他的请求，起播速度约7秒
 
